@@ -8,13 +8,14 @@
     <nav class="orange-sidemenu">
         <ul class="orange-sidebar-menu">
             <li>
-                <a href="" class=""><span><i class="fa-solid fa-home mr-2"></i> Dashboard</span></a>
+                <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"><span><i
+                            class="fa-solid fa-home mr-2"></i> Dashboard</span></a>
             </li>
 
             <li>
                 <a href="{{ route('categories.index') }}"
                     class="{{ request()->routeIs('categories.*') ? 'active' : '' }}"><span><i
-                            class="fa-solid fa-home mr-2"></i> Categories</span></a>
+                            class="fa-solid fa-table-cells-large mr-2"></i> Categories</span></a>
             </li>
 
             <li>

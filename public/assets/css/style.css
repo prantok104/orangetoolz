@@ -83,10 +83,28 @@ main.orange-main-area-start {
     border-bottom: 1px solid #f1f1f1;
 }
 
+/* Menu css */
+
 .orange-main-sidebar {
     width: 100%;
 }
+ul.orange-sidebar-menu li {
+    display: block;
+    border-bottom: 1px solid #f2f2f2;
+}
 
+ul.orange-sidebar-menu li a {
+    padding: 15px 18px;
+    color: #000;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    display: block;
+    transition: all 0.3s ease-in-out;
+}
+ul.orange-sidebar-menu li a.active,
+ul.orange-sidebar-menu li a:hover {
+    background: #e7f2fe;
+}
 
 /* Breadcrumb area */
 .orange-breadcrumb-area-start {
