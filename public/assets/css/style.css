@@ -75,15 +75,107 @@ main.orange-main-area-start {
     font-weight: 400;
     color: #1a8bff;
     font-family: 'Calistoga', cursive;
-    padding: 25px 15px;
+    padding: 33px 15px;
     text-transform: capitalize !important;
     text-align: center;
     display: block;
     background: #1a8bff0d;
+    border-bottom: 1px solid #f1f1f1;
 }
 
 .orange-main-sidebar {
     width: 100%;
+}
+
+
+/* Breadcrumb area */
+.orange-breadcrumb-area-start {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
+}
+
+.orange-breadcrumb-area-start p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #000;
+}
+
+.orange-breadcrumb-area-start p>span:first-child {
+    color: #1A8BFF;
+    font-weight: 600;
+}
+
+.orange-breadcrumb-area-start {
+    border-bottom: 1px solid #f1f1f1;
+    padding: 24px 30px 24px;
+}
+
+.orange-breadcrumb-area-start h3 {
+    margin: 0;
+}
+
+.orange-breadcrumb-right a {
+    padding: 19px;
+    display: inline-block;
+    background: #1a8bff24;
+    color: #1A8BFF;
+    border-radius: 7px;
+    font-family: 'Calistoga', cursive;
+    text-transform: capitalize;
+    font-size: 17px;
+    transition: all 0.3s ease-in-out;
+}
+
+.orange-breadcrumb-right a:hover {
+    background-color: #1A8BFF;
+    color: #fff
+}
+
+.orange-breadcrumb-right a>i {
+    margin-right: 8px;
+}
+
+
+/* Category page css */
+.orange-category-single-content {
+    margin-bottom: 15px;
+}
+
+.orange-category-data {
+    padding: 20px 35px;
+    border: 1px solid #f1f1f1a8;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: rgb(142 128 128 / 10%) 0px 10px 50px;
+}
+
+.category-title {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 8px;
+}
+
+.category-title h4 {
+    margin: 0;
+}
+
+.category-title span.time {
+    font-size: 12px;
+    text-transform: capitalize;
+    font-family: 'Poppins', sans-serif;
+    color: #999;
+}
+
+.orange-category-content {
+    padding: 25px;
+}
+.category-content p {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    color: #0000008a;
+    font-weight: 500;
 }
 
 /* Auth page css */

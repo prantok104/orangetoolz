@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -24,5 +25,7 @@ Auth::routes();  // Auth Routes
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard'); // Dashboard route
-    Route::get('logout', [HomeController::class, 'logout'])->name('logout');
+    Route::get('logout', [HomeController::class, 'logout'])->name('logout'); // Logout route
+
+    Route::resource('categories', CategoryController::class); // Category routes
 });

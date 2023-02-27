@@ -7,7 +7,7 @@
             @include('includes.sidebar')
         </aside>
         <main class="orange-main-area-start">
-            <div class="p-4 orange-margin-top">
+            <div class="orange-margin-top">
                 @yield('content')
             </div>
         </main>

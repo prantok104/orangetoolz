@@ -12,7 +12,9 @@
             </li>
 
             <li>
-                <a href="" class=""><span><i class="fa-solid fa-home mr-2"></i> Categories</span></a>
+                <a href="{{ route('categories.index') }}"
+                    class="{{ request()->routeIs('categories.*') ? 'active' : '' }}"><span><i
+                            class="fa-solid fa-home mr-2"></i> Categories</span></a>
             </li>
 
             <li>

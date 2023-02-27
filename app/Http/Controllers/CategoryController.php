@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -13,7 +15,13 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $categories = Category::latest()->paginate();
+            return view('categories.index', compact('categories'));
+        } catch (\Exception $e) {
+            Toastr::error('Something went wrong', 'Error');
+            return back();
+        }
     }
 
     /**
