@@ -1,0 +1,222 @@
+/* Default */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400;1,700;1,900&family=Calistoga&display=swap');
+
+:root {
+    --root-color: #E7ECF4;
+    --secondary: #2F3136;
+    --hover: #202225;
+    --defaultBg: #EAEAEA
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Calistoga', cursive;
+}
+
+ul {
+    margin: 0;
+    padding: 0
+}
+
+ul li {
+    list-style-type: none;
+}
+
+a,
+a:hover,
+a:active,
+a:visited,
+a:focus {
+    text-decoration: none;
+}
+
+/* Wrapper area */
+#orange-wrapper-area {
+    background: var(--root-color);
+    width: 100%;
+    min-height: 100vh;
+    padding: 5vh;
+}
+
+.orange-wrapper-area-start {
+    background: #fff;
+    width: 100%;
+    min-height: 90vh;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+}
+
+aside.orange-sidebar-area {
+    width: 25%;
+    border-right: 1px solid #f1f1f1;
+    display: flex;
+}
+
+main.orange-main-area-start {
+    width: 75%;
+}
+
+.orange-iconic {
+    width: 50px;
+    background: #1A8BFF;
+}
+
+.orange-sidebar-top-area a {
+    font-size: 35px;
+    font-weight: 400;
+    color: #1a8bff;
+    font-family: 'Calistoga', cursive;
+    padding: 25px 15px;
+    text-transform: capitalize !important;
+    text-align: center;
+    display: block;
+    background: #1a8bff0d;
+}
+
+.orange-main-sidebar {
+    width: 100%;
+}
+
+/* Auth page css */
+.orange-auth-content {
+    background: #DCE0FE;
+    min-height: 100vh;
+}
+
+.orange-auth-form-content {
+    display: flex;
+    min-height: 100vh;
+    align-items: center;
+    padding: 40px 0;
+}
+
+.orange-auth {
+    background: #FFFFFF;
+    padding: 40px;
+    border-radius: 25px;
+}
+
+.orange-auth-header h3 {
+    font-weight: 700;
+    margin-bottom: 21px;
+}
+
+.orange-auth-header {
+    text-align: center;
+    padding: 0 30px;
+}
+
+.orange-auth-form input[type="email"],
+.orange-auth-form input[type="text"],
+.orange-auth-form input[type="password"],
+.orange-auth-form select {
+    width: 100%;
+    border: 1px solid #ddd;
+    margin: 0;
+    outline: none;
+    font-size: 13px;
+    padding: 10px;
+}
+
+.orange-auth-form label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.orange-auth-body {
+    margin-top: 45px;
+}
+
+button {
+    outline: none !important;
+}
+
+.orange-auth-form button {
+    width: 100%;
+    padding: 12px;
+}
+
+.orange-auth-form a {
+    font-size: 13px;
+    color: #000000;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.orange-auth-form a:hover {
+    color: #47A0FF;
+}
+
+.orange-auth-body p {
+    font-size: 12px;
+}
+
+.orange-auth-body p>a {
+    color: #000;
+    font-weight: 600;
+    text-transform: capitalize;
+    transition: all 0.3s ease-in-out;
+}
+
+.orange-auth-body p>a:hover {
+    color: #47A0FF
+}
+
+form.orange-auth-form .form-group {
+    margin-bottom: 7px;
+}
+
+input::placeholder {
+    font-size: 13px
+}
+
+/* Errors page css */
+.orange-error-content {
+    background: #DCE0FE;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.orange-error-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.orange-errors-message {
+    width: 100%;
+    background: #fff;
+    padding: 60px 40px;
+    border-radius: 25px;
+}
+
+.orange-errors-message strong {
+    font-size: 120px;
+    line-height: 1;
+}
+
+.orange-errors-message p {
+    font-size: 25px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.orange-errors-message a {
+    display: inline-block;
+    margin-top: 25px;
+    background: #47A0FF;
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 8px;
+}

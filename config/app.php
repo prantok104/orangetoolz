@@ -185,7 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Brian2694\Toastr\ToastrServiceProvider::class, // Toastr for flash message
         /*
          * Application Service Providers...
          */
