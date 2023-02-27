@@ -17,7 +17,7 @@
         <div class="orange-breadcrumb-left">
             <p><span>{{ env('APP_NAME') }}</span> / <span>All
                     Categories</span></p>
-            <h3>All Categories ({{ $categories->count() }})</h3>
+            <h3>All Categories ({{ $categories->total() }})</h3>
         </div>
         <div class="orange-breadcrumb-right">
             <a href="{{ route('categories.create') }}"><i class="fa-solid fa-plus"></i> Add new category</a>
@@ -31,16 +31,17 @@
     <!-- Category content area start -->
     <!-- ============================================================== -->
     <div class="orange-category-content">
-        @forelse ($categories as $category)
-            <div class="orange-category-single-content">
+        @forelse ($categories as $key=>$category)
+            <div class="orange-category-single-content {{ $category->status == 1 ? 'green' : 'red' }}">
                 <div class="orange-category-data">
                     <div class="category-title">
-                        <h4><span class="mr-2">1)</span> Web Development</h4>
-                        <span>- 5 min ago</span>
+                        <h5><span
+                                class="mr-2">{{ $categories->perPage() * ($categories->currentPage() - 1) + ++$key }})</span>
+                            {{ $category->name }}</h5>
+                        <span class="time">- {{ $category->updated_at->diffForHumans() }}</span>
                     </div>
                     <div class="category-content">
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque omnis similique excepturi error
-                        </p>
+                        <p>{{ $category->description }}</p>
                     </div>
                 </div>
                 <div class="ornage-category-action">
@@ -57,6 +58,10 @@
                 </div>
             </div>
         @endforelse
+
+        <div class="pagination d-flex justify-content-right w-100">
+            {{ $categories->links() }}
+        </div>
     </div>
     <!-- ============================================================== -->
     <!-- Category content area end -->

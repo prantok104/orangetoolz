@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Category\CategoryStoreRequest;
 use App\Models\Category;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -16,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         try {
-            $categories = Category::latest()->paginate();
+            $categories = Category::latest()->paginate(3);
             return view('categories.index', compact('categories'));
         } catch (\Exception $e) {
             Toastr::error('Something went wrong', 'Error');
@@ -31,7 +32,12 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        try {
+            return view('categories.create');
+        } catch (\Exception $e) {
+            Toastr::error('Something went wrong', 'Error');
+            return back();
+        }
     }
 
     /**
@@ -40,9 +46,20 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request)
     {
-        //
+        try {
+            $category = new Category;
+            $category->name = $request->name;
+            $category->description = $request->description;
+            $category->status = $request->status;
+            $category->save();
+            Toastr::success('Category create successfully completed', 'Success');
+            return redirect()->route('categories.index');
+        } catch (\Exception $e) {
+            Toastr::error('Something went wrong', 'Error');
+            return back();
+        }
     }
 
     /**
@@ -64,7 +81,13 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        try {
+            $category = Category::findOrFail($id);
+            return view('categories.edit', compact('category'));
+        } catch (\Exception $e) {
+            Toastr::error('Something went wrong', 'Error');
+            return back();
+        }
     }
 
     /**
