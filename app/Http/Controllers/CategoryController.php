@@ -82,7 +82,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         try {
-            $category = Category::findOrFail($id);
+            $category = Category::findOrFail(decrypt($id));
             return view('categories.edit', compact('category'));
         } catch (\Exception $e) {
             Toastr::error('Something went wrong', 'Error');

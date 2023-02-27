@@ -31,7 +31,7 @@
     <!-- ============================================================== -->
     <div class="orange-category-content">
         <div class="category-form-area">
-            <form action="{{ route('categories.update', bcrypt($category->id)) }}" method="POST">
+            <form action="{{ route('categories.update', encrypt($category->id)) }}" method="POST">
                 @csrf
                 <h4 class="mb-3">Edit Category</h4>
                 <div class="form-group">

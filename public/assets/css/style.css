@@ -139,14 +139,18 @@ main.orange-main-area-start {
 /* Category page css */
 .orange-category-single-content {
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: rgb(142 128 128 / 10%) 0px 10px 50px;
+    border: 1px solid #f1f1f1a8;
+    cursor: pointer;
 }
 
 .orange-category-data {
     padding: 20px 20px;
-    border: 1px solid #f1f1f1a8;
     background: #fff;
     border-radius: 6px;
-    box-shadow: rgb(142 128 128 / 10%) 0px 10px 50px;
     overflow: hidden;
 }
 
@@ -178,6 +182,7 @@ main.orange-main-area-start {
     font-size: 15px;
     color: #0000008a;
     font-weight: 500;
+    margin-left: 30px;
 }
 
 .category-form-area {
@@ -223,6 +228,27 @@ button.submit-btn {
 .orange-category-single-content.green {
     border-left: 5px solid #b0b0ff;
     border-radius: 6px;
+}
+
+.ornage-category-action {
+    display: flex;
+    flex-flow: column;
+    padding: 4px 15px;
+    gap: 3px;
+    transition: all 0.3s ease-in-out;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.orange-category-single-content:hover .ornage-category-action {
+    visibility: visible;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+}
+
+.ornage-category-action a {
+    display: inline-block;
+    padding: 5px;
 }
 
 /* Auth page css */

@@ -45,7 +45,10 @@
                     </div>
                 </div>
                 <div class="ornage-category-action">
-
+                    <a href="{{ route('categories.edit', encrypt($category->id)) }}" title="EDIT"><i
+                            class="fa-solid fa-pen-to-square text-primary"></i></a>
+                    <a href="javascript:void(0)" title="DELETE" onclick="return 'hi'"><i
+                            class="fa-solid fa-trash text-danger"></i></a>
                 </div>
             </div>
         @empty
