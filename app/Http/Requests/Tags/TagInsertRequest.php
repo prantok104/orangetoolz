@@ -24,7 +24,7 @@ class TagInsertRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:tags,name|max:35',
+            'name'   => 'required|unique:tags,name|max:35',
             'status' => 'required|integer'
         ];
     }

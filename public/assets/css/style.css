@@ -426,3 +426,33 @@ input::placeholder {
     padding: 12px 30px;
     border-radius: 8px;
 }
+
+
+/* Dashboard css */
+.orange-single-card {
+    padding: 25px;
+    border: 1px solid #f1f1f1a8;
+    background: #fff;
+    border-radius: 7px;
+    box-shadow: rgb(142 128 128 / 10%) 0px 10px 50px;
+}
+
+.orange-single-card h4 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.orange-single-card span {
+    display: inline-block;
+    font-size: 43px;
+    font-weight: 600;
+    color: #ececec;
+    line-height: 0;
+}

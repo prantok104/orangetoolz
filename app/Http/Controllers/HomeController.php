@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Tag;
+use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,7 +28,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        try {
+            $data = [
+                'categories_count' => Category::count(),
+                'tags_count'       => Tag::count(),
+                'users_count'      => User::count(),
+            ];
+
+            return view('dashboard', compact('data'));
+        } catch (\Exception $e) {
+            Toastr::error('Something went wrong', 'Error');
+            return back();
+        }
     }
 
 

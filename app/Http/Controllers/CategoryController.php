@@ -50,10 +50,10 @@ class CategoryController extends Controller
     public function store(CategoryStoreRequest $request)
     {
         try {
-            $category = new Category;
-            $category->name = $request->name;
+            $category              = new Category;
+            $category->name        = $request->name;
             $category->description = $request->description;
-            $category->status = $request->status;
+            $category->status      = $request->status;
             $category->save();
             Toastr::success('Category create successfully completed', 'Success');
             return redirect()->route('categories.index');
@@ -101,10 +101,10 @@ class CategoryController extends Controller
     public function update(CategoryUpdateRequest $request, $id)
     {
         try {
-            $category = Category::findOrFail(decrypt($id));
-            $category->name = $request->name;
+            $category              = Category::findOrFail(decrypt($id));
+            $category->name        = $request->name;
             $category->description = $request->description;
-            $category->status = $request->status;
+            $category->status      = $request->status;
             $category->save();
             Toastr::success('Category successfully updated', 'Success');
             return redirect()->route('categories.index');

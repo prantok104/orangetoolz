@@ -50,8 +50,8 @@ class TagsController extends Controller
     public function store(TagInsertRequest $request)
     {
         try {
-            $tag  = new Tag;
-            $tag->name = $request->name;
+            $tag         = new Tag;
+            $tag->name   = $request->name;
             $tag->status = $request->status;
             $tag->save();
             Toastr::success('Tag successfully created', 'Success');
@@ -100,8 +100,8 @@ class TagsController extends Controller
     public function update(TagUpdateRequest $request, $id)
     {
         try {
-            $tag = Tag::findOrFail(decrypt($id));
-            $tag->name = $request->name;
+            $tag         = Tag::findOrFail(decrypt($id));
+            $tag->name   = $request->name;
             $tag->status = $request->status;
             $tag->save();
             Toastr::success('Tag successfully updated', 'Success');
