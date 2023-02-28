@@ -36,5 +36,13 @@ class DatabaseSeeder extends Seeder
         for ($i = 0; $i < count($users); $i++) {
             User::create($users[$i]);
         }
+
+        // Add tags
+        $this->call(
+            [
+                CategorySeeder::class,
+                TagsSeeder::class,
+            ]
+        );
     }
 }

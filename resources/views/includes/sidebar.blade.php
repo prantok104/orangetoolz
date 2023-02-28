@@ -19,6 +19,11 @@
             </li>
 
             <li>
+                <a href="{{ route('tags.index') }}" class="{{ request()->routeIs('tags.*') ? 'active' : '' }}"><span><i
+                            class="fa-solid fa-table-cells-large mr-2"></i> Tags</span></a>
+            </li>
+
+            <li>
                 <a href="" class=""><span><i class="fa-solid fa-power-off mr-2"></i>System
                         Restart</span></a>
             </li>

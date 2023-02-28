@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TagsController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +29,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('logout', [HomeController::class, 'logout'])->name('logout'); // Logout route
 
     Route::resource('categories', CategoryController::class); // Category routes
+    Route::resource('tags', TagsController::class); // Tags routes
 });

@@ -88,6 +88,7 @@ main.orange-main-area-start {
 .orange-main-sidebar {
     width: 100%;
 }
+
 ul.orange-sidebar-menu li {
     display: block;
     border-bottom: 1px solid #f2f2f2;
@@ -101,6 +102,7 @@ ul.orange-sidebar-menu li a {
     display: block;
     transition: all 0.3s ease-in-out;
 }
+
 ul.orange-sidebar-menu li a.active,
 ul.orange-sidebar-menu li a:hover {
     background: #e7f2fe;
@@ -155,18 +157,24 @@ ul.orange-sidebar-menu li a:hover {
 
 
 /* Category page css */
+.orange-margin-top {
+    height: 100%;
+}
+
 .orange-category-single-content {
     margin-bottom: 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    box-shadow: rgb(142 128 128 / 10%) 0px 10px 50px;
     border: 1px solid #f1f1f1a8;
     cursor: pointer;
+    background: #fff;
+    box-shadow: rgb(142 128 128 / 10%) 0px 10px 50px;
+    break-inside: avoid;
 }
 
 .orange-category-data {
-    padding: 20px 20px;
+    padding: 20px 0 20px 20px;
     background: #fff;
     border-radius: 6px;
     overflow: hidden;
@@ -182,6 +190,9 @@ ul.orange-sidebar-menu li a:hover {
 .category-title h5 {
     margin: 0;
 }
+.category-title.tag-title h5{
+    font-size: 14px;
+}
 
 .category-title span.time {
     font-size: 12px;
@@ -192,6 +203,8 @@ ul.orange-sidebar-menu li a:hover {
 
 .orange-category-content {
     padding: 25px;
+    background: #faf9f9;
+    height: 100%;
 }
 
 .category-content p {
@@ -214,6 +227,7 @@ ul.orange-sidebar-menu li a:hover {
     box-shadow: rgb(142 128 128 / 10%) 0px 10px 50px;
     padding: 15px 25px;
     border-radius: 7px;
+    background: #fff;
 }
 
 form label {
@@ -236,6 +250,11 @@ button.submit-btn {
     font-family: 'Calistoga', cursive;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.form-group span.text-danger {
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
 }
 
 .orange-category-single-content.red {
@@ -267,6 +286,10 @@ button.submit-btn {
 .ornage-category-action a {
     display: inline-block;
     padding: 5px;
+}
+
+.orange-tags-content {
+    column-count: 3;
 }
 
 /* Auth page css */
