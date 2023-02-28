@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Category\CategoryStoreRequest;
-use App\Http\Requests\Category\CategoryUpdateRequest;
+use App\Http\Requests\Category\CategoryRequest;
 use App\Models\Category;
 use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -18,7 +17,7 @@ class CategoryController extends Controller
     public function index()
     {
         try {
-            $categories = Category::latest()->paginate(3);
+            $categories = Category::latest()->Creator()->paginate(3);
             return view('categories.index', compact('categories'));
         } catch (\Exception $e) {
             Toastr::error('Something went wrong', 'Error');
@@ -47,11 +46,12 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryStoreRequest $request)
+    public function store(CategoryRequest $request)
     {
         try {
             $category              = new Category;
             $category->name        = $request->name;
+            $category->creator_id  = Auth::id();
             $category->description = $request->description;
             $category->status      = $request->status;
             $category->save();
@@ -98,7 +98,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryUpdateRequest $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
         try {
             $category              = Category::findOrFail(decrypt($id));

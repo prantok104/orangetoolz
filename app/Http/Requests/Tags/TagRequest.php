@@ -5,7 +5,7 @@ namespace App\Http\Requests\Tags;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class TagUpdateRequest extends FormRequest
+class TagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class TagUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'   => ['required', Rule::unique('tags', 'name')->ignore(decrypt($this->route('tag')), 'id'), 'max:35'],
+            'name'   => 'required|max:35',
             'status' => 'required|integer'
         ];
     }

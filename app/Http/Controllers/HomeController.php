@@ -30,8 +30,8 @@ class HomeController extends Controller
     {
         try {
             $data = [
-                'categories_count' => Category::count(),
-                'tags_count'       => Tag::count(),
+                'categories_count' => Category::Creator()->count(),
+                'tags_count'       => Tag::Creator()->count(),
                 'users_count'      => User::count(),
             ];
 

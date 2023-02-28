@@ -2,22 +2,19 @@
 
 namespace App\Models;
 
-use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Category extends Model
 {
-    use HasFactory, Sluggable;
+    use HasFactory;
 
     /* ***************************************************
-    ** 	 Generate Slug
+    ** 	 creator scope
     *************************************************** */
-
-    public function sluggable(): array
+    public function scopeCreator($query)
     {
-        return [
-            'slug' => ['source' => 'name']
-        ];
+        return $query->where('creator_id', Auth::id());
     }
 }

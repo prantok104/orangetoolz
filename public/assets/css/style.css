@@ -190,13 +190,13 @@ ul.orange-sidebar-menu li a:hover {
 .category-title h5 {
     margin: 0;
 }
-.category-title.tag-title h5{
+
+.category-title.tag-title h5 {
     font-size: 14px;
 }
 
 .category-title span.time {
     font-size: 12px;
-    text-transform: capitalize;
     font-family: 'Poppins', sans-serif;
     color: #999;
 }

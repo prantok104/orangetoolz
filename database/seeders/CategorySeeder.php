@@ -17,27 +17,27 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Web Design',
+                'name'        => 'Web Design',
                 'description' => 'Design like concept by typography and Interactive design'
             ],
             [
-                'name' => 'Web Development',
+                'name'        => 'Web Development',
                 'description' => 'Design backend architechture and relational database'
             ],
             [
-                'name' => 'Graphics',
+                'name'        => 'Graphics',
                 'description' => 'Typography and Illustrate'
             ],
             [
-                'name' => 'Daily',
+                'name'        => 'Daily',
                 'description' => 'Define for the daily task or workout'
             ],
             [
-                'name' => 'Programming',
+                'name'        => 'Programming',
                 'description' => 'To join the problem solving competition or self development'
             ],
             [
-                'name' => 'Apps',
+                'name'        => 'Apps',
                 'description' => 'Design or development Android or ISO platform'
             ],
         ];
@@ -49,9 +49,10 @@ class CategorySeeder extends Seeder
                 $status = 1;
             }
             Category::create([
-                'name' => $categories[$i]['name'],
+                'name'        => $categories[$i]['name'],
+                'creator_id'  => rand(1, 8),
                 'description' => $categories[$i]['description'],
-                'status' => $status
+                'status'      => $status
             ]);
         }
     }

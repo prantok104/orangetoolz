@@ -24,8 +24,9 @@ class TagsSeeder extends Seeder
                 $status = 1;
             }
             Tag::create([
-                'name' => $tags[$i],
-                'status' => $status
+                'creator_id' => rand(1, 8),
+                'name'       => $tags[$i],
+                'status'     => $status
             ]);
         }
     }

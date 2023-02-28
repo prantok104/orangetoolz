@@ -24,6 +24,12 @@
             </li>
 
             <li>
+                <a href="{{ route('users.index') }}"
+                    class="{{ request()->routeIs('users.*') ? 'active' : '' }}"><span><i
+                            class="fa-solid fa-user mr-2"></i> Connectors</span></a>
+            </li>
+
+            <li>
                 <a href="" class=""><span><i class="fa-solid fa-power-off mr-2"></i>System
                         Restart</span></a>
             </li>

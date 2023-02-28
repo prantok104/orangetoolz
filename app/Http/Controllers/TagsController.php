@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Tags\TagUpdateRequest;
-use App\Http\Requests\Tags\TagInsertRequest;
+use App\Http\Requests\Tags\TagRequest;
 use App\Models\Tag;
 use Brian2694\Toastr\Facades\Toastr;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TagsController extends Controller
 {
@@ -18,7 +17,7 @@ class TagsController extends Controller
     public function index()
     {
         try {
-            $tags = Tag::latest()->paginate(12);
+            $tags = Tag::latest()->Creator()->paginate(12);
             return view('tags.index', compact('tags'));
         } catch (\Exception $e) {
             Toastr::error('Something went wrong', 'Error');
@@ -47,10 +46,11 @@ class TagsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TagInsertRequest $request)
+    public function store(TagRequest $request)
     {
         try {
             $tag         = new Tag;
+            $tag->creator_id   = Auth::id();
             $tag->name   = $request->name;
             $tag->status = $request->status;
             $tag->save();
@@ -97,7 +97,7 @@ class TagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TagUpdateRequest $request, $id)
+    public function update(TagRequest $request, $id)
     {
         try {
             $tag         = Tag::findOrFail(decrypt($id));

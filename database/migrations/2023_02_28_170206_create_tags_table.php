@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('slug')->unique();
+            $table->unsignedBigInteger('creator_id');
+            $table->string('name');
             $table->boolean('status')->default(true)->comment('1=Active, 0=Deactive');
             $table->softDeletes();
             $table->timestamps();
+            $table->foreign('creator_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

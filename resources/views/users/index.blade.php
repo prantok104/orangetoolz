@@ -2,22 +2,22 @@
 <!-- Extends master layouts -->
 <!-- ============================================================== -->
 @extends('layouts.master')
-@section('title', 'Todo Application')
+@section('title', 'Users')
+
 
 <!-- ============================================================== -->
 <!-- Content -->
 <!-- ============================================================== -->
 @section('content')
+
     <!-- ============================================================== -->
     <!-- Breadcrumb area start -->
     <!-- ============================================================== -->
     <div class="orange-breadcrumb-area-start d-flex align-items-center justify-content-between">
         <div class="orange-breadcrumb-left">
-            <p><span>{{ env('APP_NAME') }}</span> / <span>Dashboard</span></p>
-            <h3>Dashboard</h3>
-        </div>
-        <div class="orange-breadcrumb-right">
-            <a href="{{ route('categories.index') }}"><i class="fa-solid fa-plus"></i> Add new todo list</a>
+            <p><span>{{ env('APP_NAME') }}</span> / <span>All
+                    Users</span></p>
+            <h3>All Users ({{ $users->total() }})</h3>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -28,39 +28,34 @@
     <!-- Category content area start -->
     <!-- ============================================================== -->
     <div class="orange-category-content">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="orange-single-card">
-                    <div class="card-title">
-                        <h4>Todo Lists</h4>
-                        <span>20</span>
+        @forelse ($users as $key=>$user)
+            <div class="orange-category-single-content green">
+                <div class="orange-category-data">
+                    <div class="category-title">
+                        <h5><span class="mr-2">{{ $users->perPage() * ($users->currentPage() - 1) + ++$key }})</span>
+                            {{ $user->name }}</h5>
+                        <span class="time">Created at :- {{ $user->created_at->diffForHumans() }}</span> |
+                        <span class="time">Updated at :- {{ $user->updated_at->diffForHumans() }}</span>
+                    </div>
+                    <div class="category-content">
+                        <p><i class="fa-solid fa-envelope mr-2"></i>{{ $user->email }}</p>
                     </div>
                 </div>
+
             </div>
-            <div class="col-md-3">
-                <div class="orange-single-card">
-                    <div class="card-title">
-                        <h4>Categories</h4>
-                        <span>{{ $data['categories_count'] }}</span>
+        @empty
+            <div class="orange-category-single-content">
+                <div class="orange-category-data">
+                    <div class="category-title m-0">
+                        <h4 class="text-danger">No user found!</h4>
                     </div>
+
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="orange-single-card">
-                    <div class="card-title">
-                        <h4>Tags</h4>
-                        <span>{{ $data['tags_count'] }}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="orange-single-card">
-                    <div class="card-title">
-                        <h4>Connectors</h4>
-                        <span>{{ $data['users_count'] }}</span>
-                    </div>
-                </div>
-            </div>
+        @endforelse
+
+        <div class="pagination d-flex justify-content-right w-100">
+            {{ $users->links() }}
         </div>
     </div>
     <!-- ============================================================== -->
