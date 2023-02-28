@@ -35,7 +35,7 @@
                         <div class="educa-errors-message">
                             <strong>@yield('code')</strong>
                             <p>OPPS! @yield('message')</p>
-                            <a href="{{ route('educa.dashboard') }}">Back to Home</a>
+                            <a href="{{ route('dashboard') }}">Back to Home</a>
                         </div>
                     </div>
                 </div>
