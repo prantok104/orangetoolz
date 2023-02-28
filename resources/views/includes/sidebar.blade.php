@@ -20,7 +20,7 @@
 
             <li>
                 <a href="{{ route('tags.index') }}" class="{{ request()->routeIs('tags.*') ? 'active' : '' }}"><span><i
-                            class="fa-solid fa-table-cells-large mr-2"></i> Tags</span></a>
+                            class="fa-solid fa-tags mr-2"></i> Tags</span></a>
             </li>
 
             <li>

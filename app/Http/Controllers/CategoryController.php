@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Category\CategoryStoreRequest;
+use App\Http\Requests\Category\CategoryUpdateRequest;
 use App\Models\Category;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -97,9 +98,20 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CategoryUpdateRequest $request, $id)
     {
-        //
+        try {
+            $category = Category::findOrFail(decrypt($id));
+            $category->name = $request->name;
+            $category->description = $request->description;
+            $category->status = $request->status;
+            $category->save();
+            Toastr::success('Category successfully updated', 'Success');
+            return redirect()->route('categories.index');
+        } catch (\Exception $e) {
+            Toastr::error('Something went wrong', 'Error');
+            return back();
+        }
     }
 
     /**

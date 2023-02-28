@@ -32,6 +32,7 @@
     <div class="orange-category-content">
         <div class="category-form-area">
             <form action="{{ route('categories.update', encrypt($category->id)) }}" method="POST">
+                @method('PUT')
                 @csrf
                 <h4 class="mb-3">Edit Category</h4>
                 <div class="form-group">

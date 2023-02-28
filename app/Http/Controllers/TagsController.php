@@ -104,7 +104,7 @@ class TagsController extends Controller
             $tag->name = $request->name;
             $tag->status = $request->status;
             $tag->save();
-            Toastr::success('Tag successfully updted', 'Success');
+            Toastr::success('Tag successfully updated', 'Success');
             return redirect()->route('tags.index');
         } catch (\Exception $e) {
             Toastr::error('Something went wrong', 'Error');
