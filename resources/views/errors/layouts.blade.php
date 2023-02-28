@@ -27,12 +27,12 @@
 
 <body>
 
-    <div class="educa-error-content">
+    <div class="orange-error-content">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-6 col-sm-12 mx-auto">
-                    <div class="educa-error-content">
-                        <div class="educa-errors-message">
+                    <div class="orange-error-content">
+                        <div class="orange-errors-message">
                             <strong>@yield('code')</strong>
                             <p>OPPS! @yield('message')</p>
                             <a href="{{ route('dashboard') }}">Back to Home</a>
