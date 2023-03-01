@@ -13,6 +13,11 @@
             </li>
 
             <li>
+                <a href="{{ route('todo.index') }}" class="{{ request()->routeIs('todo.*') ? 'active' : '' }}"><span><i
+                            class="fa-solid fa-table-cells-large mr-2"></i> Todo</span></a>
+            </li>
+
+            <li>
                 <a href="{{ route('categories.index') }}"
                     class="{{ request()->routeIs('categories.*') ? 'active' : '' }}"><span><i
                             class="fa-solid fa-table-cells-large mr-2"></i> Categories</span></a>
@@ -27,6 +32,12 @@
                 <a href="{{ route('users.index') }}"
                     class="{{ request()->routeIs('users.*') ? 'active' : '' }}"><span><i
                             class="fa-solid fa-user mr-2"></i> Connectors</span></a>
+            </li>
+
+            <li>
+                <a href="{{ route('trash.index') }}"
+                    class="{{ request()->routeIs('trash.*') ? 'active' : '' }}"><span><i
+                            class="fa-solid fa-trash mr-2"></i> Trashes</span></a>
             </li>
 
             <li>

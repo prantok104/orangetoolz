@@ -9,9 +9,6 @@
     {{-- Fontawesome css --}}
     <link rel="stylesheet" href="{{ asset('assets/libraries/fontawesome/css/all.min.css') }}">
 
-    {{-- Material Icon css --}}
-    <link rel="stylesheet" href="{{ asset('assets/libraries/datetimepicker/css/material.css') }}">
-
     {{-- Bootstrap css --}}
     <link rel="stylesheet" href="{{ asset('assets/libraries/bootstrap/css/bootstrap.min.css') }}">
 
@@ -21,9 +18,8 @@
     {{-- Toastr css --}}
     <link rel="stylesheet" href="{{ asset('assets/libraries/toastr/css/toastr.min.css') }}">
 
-    {{-- DatePicker css --}}
-    <link rel="stylesheet"
-        href="{{ asset('assets/libraries/datetimepicker/css/bootstrap-material-datetimepicker.css') }}">
+    {{-- Select2 css --}}
+    <link rel="stylesheet" href="{{ asset('assets/libraries/select2/css/select2.min.css') }}">
 
     {{-- Theme css --}}
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">

@@ -15,9 +15,8 @@
 {{-- SweetAlert js --}}
 <script src="{{ asset('assets/libraries/sweetalert/js/sweetalert.min.js') }}"></script>
 
-{{-- DatePicker js --}}
-<script src="{{ asset('assets/libraries/datetimepicker/js/moment-with-locales.min.js') }}"></script>
-<script src="{{ asset('assets/libraries/datetimepicker/js/bootstrap-material-datetimepicker.js') }}"></script>
+{{-- Select2 js --}}
+<script src="{{ asset('assets/libraries/select2/js/select2.min.js') }}"></script>
 
 {{-- Main js --}}
 <script src="{{ asset('assets/js/main.js') }}"></script>

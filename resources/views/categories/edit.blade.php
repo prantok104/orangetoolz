@@ -55,7 +55,7 @@
                         <option value="1" {{ $category->status == '1' ? ' selected' : '' }}>Active</option>
                         <option value="0" {{ $category->status == '0' ? ' selected' : '' }}>Deactive</option>
                     </select>
-                    @error('description')
+                    @error('status')
                         <span class="text-danger d-block mt-1">{{ $message }}</span></label>
                     @enderror
                 </div>

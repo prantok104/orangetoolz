@@ -18,4 +18,20 @@ class Tag extends Model
     {
         return $query->where('creator_id', Auth::id());
     }
+
+    /* ***************************************************
+    ** 	 Actively
+    *************************************************** */
+    public function scopeActive($query)
+    {
+        return $query->where([['creator_id',  Auth::id()], ['status', 1]])->orderBy('name', 'ASC');
+    }
+
+    /* ***************************************************
+    ** 	 Many to many relationship
+    *************************************************** */
+    public function todos()
+    {
+        return $this->belongsToMany(Todo::class);
+    }
 }

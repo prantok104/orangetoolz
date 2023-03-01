@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Tag;
+use App\Models\Todo;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
@@ -33,6 +34,8 @@ class HomeController extends Controller
                 'categories_count' => Category::Creator()->count(),
                 'tags_count'       => Tag::Creator()->count(),
                 'users_count'      => User::count(),
+                'todos_count'      => Todo::count(),
+                'favourites'       => Todo::Favourite()->paginate(2)
             ];
 
             return view('dashboard', compact('data'));
