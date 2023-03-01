@@ -312,8 +312,8 @@ button.submit-btn {
 }
 
 .orange-auth-header h3 {
-    font-weight: 700;
-    margin-bottom: 21px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
 }
 
 .orange-auth-header {
@@ -335,11 +335,10 @@ button.submit-btn {
 
 .orange-auth-form label {
     font-size: 13px;
-    font-weight: 600;
 }
 
 .orange-auth-body {
-    margin-top: 45px;
+    margin-top: 35px;
 }
 
 button {
@@ -349,13 +348,22 @@ button {
 .orange-auth-form button {
     width: 100%;
     padding: 12px;
+    border: 1px solid #1A8BFF;
+    margin: 14px 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #fff;
+    background: #1A8BFF;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 .orange-auth-form a {
     font-size: 13px;
     color: #000000;
-    font-weight: 600;
     transition: all 0.3s ease-in-out;
+    font-family: 'Calistoga', cursive;
+    font-weight: 400;
 }
 
 .orange-auth-form a:hover {
