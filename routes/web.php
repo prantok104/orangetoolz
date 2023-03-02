@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TagsController;
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\TodoController;
 use App\Http\Controllers\TrashController;
 use App\Http\Controllers\UserController;
@@ -35,6 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('tags', TagsController::class); // Tags routes
     Route::resource('todo', TodoController::class); // Todo routes
     Route::resource('users', UserController::class); // Users routes
+    Route::resource('task', TaskController::class); // Task routes
     Route::resource('trash', TrashController::class); // Trash routes
     Route::post('trash/restore', [TrashController::class, 'restore'])->name('trash.restore'); // Trash routes
 });

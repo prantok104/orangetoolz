@@ -36,13 +36,22 @@ class Todo extends Model
     }
 
 
+    /* ***************************************************
+    ** 	 Has Many relationship with task
+    *************************************************** */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
+
 
     /* ***************************************************
     ** 	 Favourite
     *************************************************** */
     public function scopeFavourite($query)
     {
-        return $query->where([['is_favourite', 1], ['creator_id', Auth::id()]])->latest();
+        return $query->withCount('tasks')->where([['is_favourite', 1], ['creator_id', Auth::id()]])->latest();
     }
 
 

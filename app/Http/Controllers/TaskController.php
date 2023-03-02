@@ -2,30 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Todo\TodoRequest;
-use App\Models\Category;
-use App\Models\Tag;
+use App\Http\Requests\TaskRequest;
+use App\Models\Task;
 use App\Models\Todo;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class TodoController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        try {
-            $todos = Todo::with(['categories', 'tags'])->withCount('tasks')->Creator()->latest()->paginate(3);
-            return view('todo.index', compact('todos'));
-        } catch (\Exception $e) {
-            Toastr::error('Something went wrong', 'Error');
-            return back();
-        }
+        // try {
+        $tasks = Task::with('todos')->Orderly(decrypt($request->todo_id))->paginate(3);
+        $todo = Todo::findOrFail(decrypt($request->todo_id));
+        return view('todo.task.index', compact('tasks', 'todo'));
+        // } catch (\Exception $e) {
+        //     Toastr::error('Something went wrong', 'Error');
+        //     return back();
+        // }
     }
 
     /**
@@ -33,12 +32,12 @@ class TodoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         try {
-            $categories = Category::Active()->get(['id', 'name']);
-            $tags = Tag::Active()->get(['id', 'name']);
-            return view('todo.create', compact('categories', 'tags'));
+            $todo_id = $request->todo_id;
+            $order = Task::where('todo_id', decrypt($todo_id))->count() + 1;
+            return view('todo.task.create', compact('todo_id', 'order'));
         } catch (\Exception $e) {
             Toastr::error('Something went wrong', 'Error');
             return back();
@@ -51,20 +50,19 @@ class TodoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(TodoRequest $request)
+    public function store(TaskRequest $request)
     {
         if ($request->isMethod('POST')) {
             try {
-                $todo = new Todo;
-                $todo->creator_id = Auth::id();
-                $todo->name = $request->name;
-                $todo->description = $request->description;
-                $todo->category_id = $request->category;
-                $todo->is_favourite = $request->is_favourite;
-                $todo->save();
-                $todo->tags()->sync($request->tags);
-                Toastr::success('Item successfully created', 'Success');
-                return redirect()->route('todo.index');
+                $task  = new Task;
+                $task->todo_id = decrypt($request->todo_id);
+                $task->name = $request->name;
+                $task->priority = $request->priority;
+                $task->status = $request->status;
+                $task->order = $request->order;
+                $task->save();
+                Toastr::success('Task successfully created', 'Success');
+                return redirect()->route('task.index', ['todo_id' => $request->todo_id]);
             } catch (\Exception $e) {
                 Toastr::error('Something went wrong', 'Error');
                 return back();
@@ -92,13 +90,12 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
         try {
-            $todo = Todo::with(['categories', 'tags'])->findOrFail(decrypt($id));
-            $categories = Category::Active()->get(['id', 'name']);
-            $tags = Tag::Active()->get(['id', 'name']);
-            return view('todo.edit', compact('todo', 'categories', 'tags'));
+            $todo_id = $request->todo_id;
+            $task = Task::findOrFail(decrypt($id));
+            return view('todo.task.edit', compact('todo_id', 'task'));
         } catch (\Exception $e) {
             Toastr::error('Something went wrong', 'Error');
             return back();
@@ -112,19 +109,18 @@ class TodoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(TodoRequest $request, $id)
+    public function update(Request $request, $id)
     {
         if ($request->isMethod('PUT')) {
             try {
-                $todo = Todo::findOrFail(decrypt($id));
-                $todo->name = $request->name;
-                $todo->description = $request->description;
-                $todo->category_id = $request->category;
-                $todo->is_favourite = $request->is_favourite;
-                $todo->save();
-                $todo->tags()->sync($request->tags);
-                Toastr::success('Item successfully updated', 'Success');
-                return redirect()->route('todo.index');
+                $task  = Task::findOrFail(decrypt($id));
+                $task->name = $request->name;
+                $task->priority = $request->priority;
+                $task->status = $request->status;
+                $task->order = $request->order;
+                $task->save();
+                Toastr::success('Task successfully updated', 'Success');
+                return redirect()->route('task.index', ['todo_id' => $request->todo_id]);
             } catch (\Exception $e) {
                 Toastr::error('Something went wrong', 'Error');
                 return back();
@@ -144,9 +140,9 @@ class TodoController extends Controller
     public function destroy($id)
     {
         try {
-            $todo = Todo::findOrFail($id);
-            $todo->trashes()->create(['label' => 'Todo']);
-            $todo->delete();
+            $task = Task::findOrFail($id);
+            $task->trashes()->create(['label' => 'Task']);
+            $task->delete();
         } catch (\Exception $e) {
             Toastr::error('Something went wrong', 'Error');
             return back();

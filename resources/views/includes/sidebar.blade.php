@@ -14,7 +14,7 @@
 
             <li>
                 <a href="{{ route('todo.index') }}" class="{{ request()->routeIs('todo.*') ? 'active' : '' }}"><span><i
-                            class="fa-solid fa-table-cells-large mr-2"></i> Todo</span></a>
+                            class="fa-solid fa-table-cells-large mr-2"></i> Todo Lists</span></a>
             </li>
 
             <li>

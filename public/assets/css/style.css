@@ -286,7 +286,7 @@ button.submit-btn {
 
 .ornage-category-action a {
     display: inline-block;
-    padding: 5px;
+    padding: 1px 5px;
 }
 
 .orange-tags-content {
@@ -495,7 +495,8 @@ p.profile {
     border-radius: 18px;
     background: #f3f9ff;
 }
-.category-tags span.category{
+
+.category-tags span.category {
     border: 1px solid #aa1aff66;
     background: #f7ebff;
 }

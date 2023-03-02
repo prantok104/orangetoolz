@@ -48,16 +48,21 @@ class TagsController extends Controller
      */
     public function store(TagRequest $request)
     {
-        try {
-            $tag         = new Tag;
-            $tag->creator_id   = Auth::id();
-            $tag->name   = $request->name;
-            $tag->status = $request->status;
-            $tag->save();
-            Toastr::success('Tag successfully created', 'Success');
-            return redirect()->route('tags.index');
-        } catch (\Exception $e) {
-            Toastr::error('Something went wrong', 'Error');
+        if ($request->isMethod('POST')) {
+            try {
+                $tag         = new Tag;
+                $tag->creator_id   = Auth::id();
+                $tag->name   = $request->name;
+                $tag->status = $request->status;
+                $tag->save();
+                Toastr::success('Tag successfully created', 'Success');
+                return redirect()->route('tags.index');
+            } catch (\Exception $e) {
+                Toastr::error('Something went wrong', 'Error');
+                return back();
+            }
+        } else {
+            Toastr::error('Method not allowed', 'Error');
             return back();
         }
     }
@@ -99,15 +104,20 @@ class TagsController extends Controller
      */
     public function update(TagRequest $request, $id)
     {
-        try {
-            $tag         = Tag::findOrFail(decrypt($id));
-            $tag->name   = $request->name;
-            $tag->status = $request->status;
-            $tag->save();
-            Toastr::success('Tag successfully updated', 'Success');
-            return redirect()->route('tags.index');
-        } catch (\Exception $e) {
-            Toastr::error('Something went wrong', 'Error');
+        if ($request->isMethod('PUT')) {
+            try {
+                $tag         = Tag::findOrFail(decrypt($id));
+                $tag->name   = $request->name;
+                $tag->status = $request->status;
+                $tag->save();
+                Toastr::success('Tag successfully updated', 'Success');
+                return redirect()->route('tags.index');
+            } catch (\Exception $e) {
+                Toastr::error('Something went wrong', 'Error');
+                return back();
+            }
+        } else {
+            Toastr::error('Method not allowed', 'Error');
             return back();
         }
     }

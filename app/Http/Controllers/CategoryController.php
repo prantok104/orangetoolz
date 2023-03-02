@@ -48,17 +48,22 @@ class CategoryController extends Controller
      */
     public function store(CategoryRequest $request)
     {
-        try {
-            $category              = new Category;
-            $category->name        = $request->name;
-            $category->creator_id  = Auth::id();
-            $category->description = $request->description;
-            $category->status      = $request->status;
-            $category->save();
-            Toastr::success('Category create successfully completed', 'Success');
-            return redirect()->route('categories.index');
-        } catch (\Exception $e) {
-            Toastr::error('Something went wrong', 'Error');
+        if ($request->isMethod('POST')) {
+            try {
+                $category              = new Category;
+                $category->name        = $request->name;
+                $category->creator_id  = Auth::id();
+                $category->description = $request->description;
+                $category->status      = $request->status;
+                $category->save();
+                Toastr::success('Category create successfully completed', 'Success');
+                return redirect()->route('categories.index');
+            } catch (\Exception $e) {
+                Toastr::error('Something went wrong', 'Error');
+                return back();
+            }
+        } else {
+            Toastr::error('Method not allowed', 'Error');
             return back();
         }
     }
@@ -100,16 +105,21 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-        try {
-            $category              = Category::findOrFail(decrypt($id));
-            $category->name        = $request->name;
-            $category->description = $request->description;
-            $category->status      = $request->status;
-            $category->save();
-            Toastr::success('Category successfully updated', 'Success');
-            return redirect()->route('categories.index');
-        } catch (\Exception $e) {
-            Toastr::error('Something went wrong', 'Error');
+        if ($request->isMethod('PUT')) {
+            try {
+                $category              = Category::findOrFail(decrypt($id));
+                $category->name        = $request->name;
+                $category->description = $request->description;
+                $category->status      = $request->status;
+                $category->save();
+                Toastr::success('Category successfully updated', 'Success');
+                return redirect()->route('categories.index');
+            } catch (\Exception $e) {
+                Toastr::error('Something went wrong', 'Error');
+                return back();
+            }
+        } else {
+            Toastr::error('Method not allowed', 'Error');
             return back();
         }
     }

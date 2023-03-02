@@ -66,7 +66,7 @@
 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="tags">Tags <span class="text-danger">*</span></label>
+                        <label for="tags">Tags (Optional)</label>
                         <select name="tags[]" id="tags" class="form-control select2" multiple="multiple"
                             data-placeholder="---Select the tags---">
                             @foreach ($tags as $tag)

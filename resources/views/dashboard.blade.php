@@ -75,12 +75,16 @@
                             <h5><span class="mr-2">{{ $todos->perPage() * ($todos->currentPage() - 1) + ++$key }})</span>
                                 {{ $todo->name }}</h5>
                             <span class="time">- {{ $todo->updated_at->diffForHumans() }}</span>
+                            <span class="time">
+                                {!! $todo->is_favourite == 1
+                                    ? '<span class="text-warning"><i class="fa-solid fa-star"></i> Favourite</span>'
+                                    : '' !!}</span>
                         </div>
                         <div class="category-content">
                             <p>{{ $todo->description }}</p>
                             <div class="category-tags mt-2">
                                 <div class="orange-cat">
-                                    <span class="category">{{ @$todo->categories->name }}</span>
+                                    <span class="category ml-4">{{ @$todo->categories->name }}</span>
                                 </div>
                                 <div class="orange-tags">
                                     @if (count(@$todo->tags) > 0)
@@ -94,9 +98,12 @@
                         </div>
                     </div>
                     <div class="ornage-category-action">
+                        <a href="{{ route('task.index', ['todo_id' => encrypt($todo->id)]) }}"
+                            title="Tasks ({{ @$todo->tasks_count }})"><i
+                                class="fa-solid fa-briefcase text-success"></i></a>
                         <a href="{{ route('todo.edit', encrypt($todo->id)) }}" title="EDIT"><i
                                 class="fa-solid fa-pen-to-square text-primary"></i></a>
-                        <a href="javascript:void(0)" title="DELETE" onclick="return 'hi'"><i
+                        <a href="javascript:void(0)" title="DELETE" onclick="return deleteItem({{ $todo->id }})"><i
                                 class="fa-solid fa-trash text-danger"></i></a>
                     </div>
                 </div>

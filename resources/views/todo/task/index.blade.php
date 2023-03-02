@@ -2,9 +2,23 @@
 <!-- Extends master layouts -->
 <!-- ============================================================== -->
 @extends('layouts.master')
-@section('title', 'All Items')
+@section('title', 'All Tasks')
 
-
+@php
+    $priority = [
+        '1' => ['text-danger', 'High'],
+        '2' => ['text-warning', 'Medium'],
+        '3' => ['text-primary', 'Low'],
+    ];
+    
+    $status = [
+        '1' => ['text-muted', 'Active'],
+        '2' => ['text-primary', 'Processing'],
+        '3' => ['text-danger', 'Done'],
+        '4' => ['text-warning', 'Checking'],
+        '5' => ['text-success', 'Completed'],
+    ];
+@endphp
 <!-- ============================================================== -->
 <!-- Content -->
 <!-- ============================================================== -->
@@ -16,11 +30,12 @@
     <div class="orange-breadcrumb-area-start d-flex align-items-center justify-content-between">
         <div class="orange-breadcrumb-left">
             <p><span>{{ env('APP_NAME') }}</span> / <span>All
-                    Items</span></p>
-            <h3>All Items ({{ $todos->total() }})</h3>
+                    Tasks</span></p>
+            <h3>All Tasks ({{ $tasks->total() }}) by {{ $todo->name }}</h3>
         </div>
         <div class="orange-breadcrumb-right">
-            <a href="{{ route('todo.create') }}"><i class="fa-solid fa-plus"></i> Add new item</a>
+            <a href="{{ route('task.create', ['todo_id' => encrypt($todo->id)]) }}"><i class="fa-solid fa-plus"></i> Add new
+                task</a>
         </div>
     </div>
     <!-- ============================================================== -->
@@ -31,44 +46,27 @@
     <!-- Category content area start -->
     <!-- ============================================================== -->
     <div class="orange-category-content">
-        @forelse ($todos as $key=>$todo)
+        @forelse ($tasks as $key=>$task)
             <div class="orange-category-single-content green">
                 <div class="orange-category-data">
                     <div class="category-title">
-                        <h5><span class="mr-2">{{ $todos->perPage() * ($todos->currentPage() - 1) + ++$key }})</span>
-                            {{ $todo->name }}</h5>
-                        <span class="time">- {{ $todo->updated_at->diffForHumans() }}</span>
-                        <span class="time">
-                            {!! $todo->is_favourite == 1
-                                ? '<span class="text-warning"><i class="fa-solid fa-star"></i> Favourite</span>'
-                                : '' !!}</span>
+                        <h5><span class="mr-2">{{ $tasks->perPage() * ($tasks->currentPage() - 1) + ++$key }})</span>
+                            {{ $task->name }}</h5>
+                        <span class="time">- {{ $task->updated_at->diffForHumans() }}</span>
+                        <span class="time {{ $priority[$task->priority][0] }}">- {{ $priority[$task->priority][1] }}</span>
                     </div>
                     <div class="category-content">
-                        <p>{{ $todo->description }}</p>
                         <div class="category-tags mt-2">
-                            <div class="orange-cat">
-                                <span class="category ml-4">{{ @$todo->categories->name }}</span>
-                            </div>
                             <div class="orange-tags">
-                                @if (@$todo->tasks_count > 0)
-                                    <small>Tasks ({{ @$todo->tasks_count }}) </small>
-                                @endif
-                                @if (count(@$todo->tags) > 0)
-                                    <small>Tags: </small>
-                                @endif
-                                @foreach (@$todo->tags as $tag)
-                                    <span>{{ $tag->name }}</span>
-                                @endforeach
+                                <span class="ml-4 {{ $status[$task->status][0] }}">{{ $status[$task->status][1] }}</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="ornage-category-action">
-                    <a href="{{ route('task.index', ['todo_id' => encrypt($todo->id)]) }}"
-                        title="Tasks ({{ @$todo->tasks_count }})"><i class="fa-solid fa-briefcase text-success"></i></a>
-                    <a href="{{ route('todo.edit', encrypt($todo->id)) }}" title="EDIT"><i
-                            class="fa-solid fa-pen-to-square text-primary"></i></a>
-                    <a href="javascript:void(0)" title="DELETE" onclick="return deleteItem({{ $todo->id }})"><i
+                    <a href="{{ route('task.edit', [encrypt($task->id), 'todo_id' => encrypt($todo->id)]) }}"
+                        title="EDIT"><i class="fa-solid fa-pen-to-square text-primary"></i></a>
+                    <a href="javascript:void(0)" title="DELETE" onclick="return deleteItem({{ $task->id }})"><i
                             class="fa-solid fa-trash text-danger"></i></a>
                 </div>
             </div>
@@ -76,7 +74,7 @@
             <div class="orange-category-single-content">
                 <div class="orange-category-data">
                     <div class="category-title m-0">
-                        <h4 class="text-danger">No item found!</h4>
+                        <h4 class="text-danger">No task found!</h4>
                     </div>
 
                 </div>
@@ -84,7 +82,7 @@
         @endforelse
 
         <div class="pagination d-flex justify-content-right w-100">
-            {{ $todos->links() }}
+            {{ $tasks->links() }}
         </div>
     </div>
     <!-- ============================================================== -->
@@ -118,7 +116,7 @@
             }).then((willDelete) => {
                 if (willDelete) {
                     $.ajax({
-                        url: "{{ route('todo.destroy', '') }}" + "/" + id,
+                        url: "{{ route('task.destroy', '') }}" + "/" + id,
                         method: "DELETE",
                         data: {
                             _token: "{{ csrf_token() }}"
