@@ -145,7 +145,7 @@ class TodoController extends Controller
     {
         try {
             $todo = Todo::findOrFail($id);
-            $todo->trashes()->create(['label' => 'Todo']);
+            $todo->trashes()->create(['label' => 'Todo', 'creator_id' => Auth::id()]);
             $todo->delete();
         } catch (\Exception $e) {
             Toastr::error('Something went wrong', 'Error');

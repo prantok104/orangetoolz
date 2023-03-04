@@ -16,7 +16,7 @@ class TrashController extends Controller
     public function index()
     {
         try {
-            $trashes = Trash::latest()->paginate(3);
+            $trashes = Trash::Creator()->latest()->paginate(3);
             return view('trash.index', compact('trashes'));
         } catch (\Exception $e) {
             Toastr::error('Something went wrong', 'Error');

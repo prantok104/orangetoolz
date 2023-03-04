@@ -132,6 +132,13 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $category = Category::findOrFail($id);
+            $category->trashes()->create(['label' => 'Category', 'creator_id' => Auth::id()]);
+            $category->delete();
+        } catch (\Exception $e) {
+            Toastr::error('Something went wrong', 'Error');
+            return back();
+        }
     }
 }

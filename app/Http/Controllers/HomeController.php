@@ -8,6 +8,7 @@ use App\Models\Todo;
 use App\Models\User;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -34,7 +35,7 @@ class HomeController extends Controller
                 'categories_count' => Category::Creator()->count(),
                 'tags_count'       => Tag::Creator()->count(),
                 'users_count'      => User::count(),
-                'todos_count'      => Todo::count(),
+                'todos_count'      => Todo::Creator()->count(),
                 'favourites'       => Todo::Favourite()->paginate(2)
             ];
 
@@ -47,15 +48,17 @@ class HomeController extends Controller
 
 
     /**
-     * Show the application dashboard.
+     * System restart
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function logout()
+    public function systemRestart()
     {
         try {
-            Auth::logout();
-            return redirect('login');
+            Artisan::call('cache:clear');
+            Artisan::call('route:clear');
+            Toastr::success('System restart completed', 'Success');
+            return redirect()->route('dashboard');
         } catch (\Exception $e) {
             Toastr::error('Something went wrong', 'Error');
             return back();

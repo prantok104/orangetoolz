@@ -26,7 +26,7 @@
 
     <!-- ============================================================== -->
     <!-- Breadcrumb area start -->
-    <!-- ============================================================== -->
+    <!--  ============================================================== -->
     <div class="orange-breadcrumb-area-start d-flex align-items-center justify-content-between">
         <div class="orange-breadcrumb-left">
             <p><span>{{ env('APP_NAME') }}</span> / <span>All
@@ -44,10 +44,11 @@
 
     <!-- ============================================================== -->
     <!-- Category content area start -->
-    <!-- ============================================================== -->
-    <div class="orange-category-content">
+    <!--  ============================================================== -->
+    <div class="response"></div>
+    <div class="orange-category-content sortable-list">
         @forelse ($tasks as $key=>$task)
-            <div class="orange-category-single-content green">
+            <div class="orange-category-single-content green" id="taskOrder_{{ $task->id }}">
                 <div class="orange-category-data">
                     <div class="category-title">
                         <h5><span class="mr-2">{{ $tasks->perPage() * ($tasks->currentPage() - 1) + ++$key }})</span>
@@ -82,7 +83,7 @@
         @endforelse
 
         <div class="pagination d-flex justify-content-right w-100">
-            {{ $tasks->links() }}
+            {{ $tasks->appends(['todo_id' => encrypt($todo->id)])->links() }}
         </div>
     </div>
     <!-- ============================================================== -->
@@ -91,8 +92,8 @@
 @endsection
 
 
-{{-- Category delete js --}}
 @push('js')
+    {{-- Task delete js --}}
     <script>
         function deleteItem(id) {
             new swal({
@@ -136,5 +137,49 @@
                 }
             });
         }
+    </script>
+
+    {{-- Task order --}}
+    <script>
+        $(document).ready(function() {
+            function slideout() {
+                setTimeout(function() {
+                    $('.response').slideUp("slow", function() {
+
+                    });
+                }, 2000);
+            }
+            $('.response').hide()
+            $(function() {
+                $('.sortable-list').sortable({
+                    opacity: 0.8,
+                    cursor: 'move',
+                    update: function() {
+                        var order = $(this).sortable("serialize");
+                        $.ajax({
+                            url: "{{ route('task.order') }}",
+                            method: 'POST',
+                            data: {
+                                order: order,
+                                parent: {{ $todo->id }},
+                                _token: "{{ csrf_token() }}"
+                            },
+                            success: function(response) {
+                                $('.response').css({
+                                    "display": "block",
+                                    "padding": "4px",
+                                    "text-align": "center",
+                                    "background": "#03D87F",
+                                    'color': "#fff"
+                                });
+                                $('.response').html(response);
+                                $('.response').slideDown('slow')
+                                slideout()
+                            }
+                        });
+                    }
+                })
+            })
+        });
     </script>
 @endpush

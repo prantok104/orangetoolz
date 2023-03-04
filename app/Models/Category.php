@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
 class Category extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     /* ***************************************************
     ** 	 creator scope
@@ -32,5 +33,14 @@ class Category extends Model
     public function todos()
     {
         return $this->hasMany(Todo::class, 'id', 'category_id');
+    }
+
+
+    /* ***************************************************
+    ** 	 Trash
+    *************************************************** */
+    public function trashes()
+    {
+        return $this->morphMany(Trash::class, 'trashable');
     }
 }

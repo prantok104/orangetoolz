@@ -47,7 +47,7 @@
                 <div class="ornage-category-action">
                     <a href="{{ route('categories.edit', encrypt($category->id)) }}" title="EDIT"><i
                             class="fa-solid fa-pen-to-square text-primary"></i></a>
-                    <a href="javascript:void(0)" title="DELETE" onclick="return 'hi'"><i
+                    <a href="javascript:void(0)" title="DELETE" onclick="return deleteItem({{ $category->id }})"><i
                             class="fa-solid fa-trash text-danger"></i></a>
                 </div>
             </div>
@@ -70,3 +70,53 @@
     <!-- Category content area end -->
     <!-- ============================================================== -->
 @endsection
+
+
+
+{{-- Category delete js --}}
+@push('js')
+    <script>
+        function deleteItem(id) {
+            new swal({
+                title: 'Are you sure?',
+                text: 'Once delete, You will be able to recover from trash',
+                icon: 'warning',
+                buttons: {
+                    confirm: {
+                        text: "Confirm",
+                        value: true,
+                        visible: true,
+                        closeModel: true
+                    },
+                    cancel: {
+                        text: "Cancel",
+                        value: false,
+                        visible: true,
+                        closeModel: true
+                    }
+                }
+            }).then((willDelete) => {
+                if (willDelete) {
+                    $.ajax({
+                        url: "{{ route('categories.destroy', '') }}" + "/" + id,
+                        method: "DELETE",
+                        data: {
+                            _token: "{{ csrf_token() }}"
+                        },
+                        success: function(response) {
+                            new swal("Success",
+                                "This item has been deleted.",
+                                "success");
+                            location.reload();
+                        },
+                        error: function(xhr, status, error) {
+                            new swal("Error!",
+                                "An error occurred while deleting the trash item",
+                                "error");
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+@endpush

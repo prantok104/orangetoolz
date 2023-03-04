@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
 class Tag extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
 
     /* ***************************************************
@@ -33,5 +34,14 @@ class Tag extends Model
     public function todos()
     {
         return $this->belongsToMany(Todo::class);
+    }
+
+
+    /* ***************************************************
+    ** 	 Trash
+    *************************************************** */
+    public function trashes()
+    {
+        return $this->morphMany(Trash::class, 'trashable');
     }
 }

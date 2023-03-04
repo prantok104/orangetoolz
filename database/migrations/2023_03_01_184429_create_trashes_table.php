@@ -16,8 +16,11 @@ return new class extends Migration
         Schema::create('trashes', function (Blueprint $table) {
             $table->id();
             $table->string('label')->nullable();
+            $table->unsignedBigInteger('creator_id');
             $table->morphs('trashable');
             $table->timestamps();
+
+            $table->foreign('creator_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

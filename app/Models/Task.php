@@ -23,7 +23,7 @@ class Task extends Model
     *************************************************** */
     public function scopeOrderly($query, $todo_id)
     {
-        return $query->where('todo_id', $todo_id)->orderBy('priority', 'ASC')->orderBy('status', 'ASC');
+        return $query->where('todo_id', $todo_id)->orderBy('priority', 'ASC')->orderBy('order')->orderBy('status', 'ASC');
     }
 
     /* ***************************************************

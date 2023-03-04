@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         try {
-            $users = User::latest()->paginate(4);
+            $users = User::latest()->paginate(3);
             return view('users.index', compact('users'));
         } catch (\Exception $e) {
             Toastr::error('Something went wrong', 'Error');

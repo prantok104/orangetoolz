@@ -94,20 +94,31 @@ ul.orange-sidebar-menu li {
     border-bottom: 1px solid #f2f2f2;
 }
 
-ul.orange-sidebar-menu li a {
+ul.orange-sidebar-menu li a,
+ul.orange-sidebar-menu li button {
     padding: 15px 18px;
     color: #000;
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     display: block;
     transition: all 0.3s ease-in-out;
+    border: none;
+    background: #fff;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
 }
 
 ul.orange-sidebar-menu li a.active,
-ul.orange-sidebar-menu li a:hover {
+ul.orange-sidebar-menu li a:hover,
+ul.orange-sidebar-menu li button:hover {
     background: #e7f2fe;
 }
 
+.slicknav_menu{
+    display: none;
+}
 /* Breadcrumb area */
 .orange-breadcrumb-area-start {
     font-family: 'Poppins', sans-serif;
@@ -171,6 +182,7 @@ ul.orange-sidebar-menu li a:hover {
     background: #fff;
     box-shadow: rgb(142 128 128 / 10%) 0px 10px 50px;
     break-inside: avoid;
+    border-radius: 6px;
 }
 
 .orange-category-data {

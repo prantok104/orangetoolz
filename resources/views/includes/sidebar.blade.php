@@ -3,10 +3,11 @@
 </div>
 <div class="orange-main-sidebar">
     <div class="orange-sidebar-top-area">
-        <a href="" class="text-uppercase title">{{ env('APP_NAME') }}</a>
+        <a href="{{ route('dashboard') }}" class="text-uppercase title">{{ env('APP_NAME') }}</a>
     </div>
     <nav class="orange-sidemenu">
-        <ul class="orange-sidebar-menu">
+        <div id="menu2"></div>
+        <ul class="orange-sidebar-menu" id="menu">
             <li>
                 <a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}"><span><i
                             class="fa-solid fa-home mr-2"></i> Dashboard</span></a>
@@ -14,7 +15,7 @@
 
             <li>
                 <a href="{{ route('todo.index') }}" class="{{ request()->routeIs('todo.*') ? 'active' : '' }}"><span><i
-                            class="fa-solid fa-table-cells-large mr-2"></i> Todo Lists</span></a>
+                            class="fa-solid fa-list mr-2"></i> Todo Lists</span></a>
             </li>
 
             <li>
@@ -41,13 +42,16 @@
             </li>
 
             <li>
-                <a href="" class=""><span><i class="fa-solid fa-power-off mr-2"></i>System
+                <a href="{{ route('system.restart') }}" class=""><span><i
+                            class="fa-solid fa-power-off mr-2"></i>System
                         Restart</span></a>
             </li>
 
             <li>
-                <a href="{{ route('logout') }}" class=""><span><i
-                            class="fa-solid fa-arrow-right-from-bracket mr-2"></i>Logout</span></a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button><span><i class="fa-solid fa-arrow-right-from-bracket mr-2"></i>Logout</span></button>
+                </form>
             </li>
         </ul>
     </nav>

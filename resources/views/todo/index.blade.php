@@ -93,7 +93,7 @@
 @endsection
 
 
-{{-- Category delete js --}}
+{{-- Todo delete js --}}
 @push('js')
     <script>
         function deleteItem(id) {

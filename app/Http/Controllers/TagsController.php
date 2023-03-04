@@ -130,6 +130,13 @@ class TagsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try {
+            $tag = Tag::findOrFail($id);
+            $tag->trashes()->create(['label' => 'Tag', 'creator_id' => Auth::id()]);
+            $tag->delete();
+        } catch (\Exception $e) {
+            Toastr::error('Something went wrong', 'Error');
+            return back();
+        }
     }
 }

@@ -29,7 +29,7 @@
     <!-- ============================================================== -->
     <div class="orange-category-content">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-6">
                 <div class="orange-single-card">
                     <div class="card-title">
                         <h4>Todo Lists</h4>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-6">
                 <div class="orange-single-card">
                     <div class="card-title">
                         <h4>Categories</h4>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-6">
                 <div class="orange-single-card">
                     <div class="card-title">
                         <h4>Tags</h4>
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-lg-3 col-md-6">
                 <div class="orange-single-card">
                     <div class="card-title">
                         <h4>Connectors</h4>

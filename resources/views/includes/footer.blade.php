@@ -18,6 +18,12 @@
 {{-- Select2 js --}}
 <script src="{{ asset('assets/libraries/select2/js/select2.min.js') }}"></script>
 
+{{-- SlickNav-1.0.10 js --}}
+<script src="{{ asset('assets/libraries/SlickNav-1.0.10/js/jquery.slicknav.min.js') }}"></script>
+
+{{-- jQuery UI js --}}
+<script src="{{ asset('assets/libraries/jquery/js/jquery-ui.js') }}"></script>
+
 {{-- Main js --}}
 <script src="{{ asset('assets/js/main.js') }}"></script>
 
