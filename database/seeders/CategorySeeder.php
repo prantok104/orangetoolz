@@ -43,16 +43,11 @@ class CategorySeeder extends Seeder
         ];
 
         for ($i = 0; $i < count($categories); $i++) {
-            if ($i == 3) {
-                $status = 0;
-            } else {
-                $status = 1;
-            }
             Category::create([
                 'name'        => $categories[$i]['name'],
-                'creator_id'  => rand(1, 8),
+                'creator_id'  => 1,
                 'description' => $categories[$i]['description'],
-                'status'      => $status
+                'status'      => ($i == 3) ? 0 : 1
             ]);
         }
     }

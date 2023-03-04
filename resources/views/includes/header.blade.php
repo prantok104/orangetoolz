@@ -14,6 +14,10 @@
 
     {{-- Title --}}
     <title>@yield('title') | {{ ENV('APP_NAME') }}</title>
+
+    {{-- Favicon --}}
+    <link href="{{ asset('favicon.png') }}" rel="icon" type="image/png">
+
     {{-- Fontawesome css --}}
     <link rel="stylesheet" href="{{ asset('assets/libraries/fontawesome/css/all.min.css') }}">
 

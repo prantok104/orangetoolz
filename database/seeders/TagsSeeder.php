@@ -18,15 +18,10 @@ class TagsSeeder extends Seeder
         $tags = ['Laravel', 'PHP', 'Javascript', 'React', 'Vue', 'jQuery', 'HTML', 'Wake up', 'Sleep', 'Route', 'Controller', 'Rest API', 'Navbar', 'Drawer', 'Python', 'Flex', 'Tailwind'];
 
         for ($i = 0; $i < count($tags); $i++) {
-            if ($i == 3 || $i == 8) {
-                $status = 0;
-            } else {
-                $status = 1;
-            }
             Tag::create([
-                'creator_id' => rand(1, 8),
+                'creator_id' => 1,
                 'name'       => $tags[$i],
-                'status'     => $status
+                'status'     => ($i == 3 || $i == 8) ? 0 : 1
             ]);
         }
     }
