@@ -9,6 +9,9 @@
     {{-- Fontawesome css --}}
     <link rel="stylesheet" href="{{ asset('assets/libraries/fontawesome/css/all.min.css') }}">
 
+    {{-- Favicon --}}
+    <link href="{{ asset('favicon.png') }}" rel="icon" type="image/png">
+
     {{-- Bootstrap css --}}
     <link rel="stylesheet" href="{{ asset('assets/libraries/bootstrap/css/bootstrap.min.css') }}">
 
